@@ -4,7 +4,7 @@
     "slug": "EstadisticaApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/calculador..png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,9 +13,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/calculador.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rudycuaquira.EstadisticaApp"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b5b9ba75-353e-47ad-88d1-cf60f62d2c6a"
+      }
     }
   }
 }

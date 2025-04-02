@@ -1,17 +1,39 @@
-import { Image, StyleSheet, ScrollView, Text, View } from 'react-native';
+import { Image, StyleSheet, ScrollView, Text, View, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from 'expo-router';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+
+// Define el tipo de las rutas del drawer
+type RootDrawerParamList = {
+  index: undefined; // Agrega la ruta para HomeScreen (index)
+  tabs: undefined;
+  calculadoraFinita: undefined;
+  calculadoraInfinita: undefined;
+  calculadoraMedia: undefined;
+  calculadoraModa: undefined;
+  calculadoraDesviacionEstandar: undefined;
+  calculadoraMediana: undefined;
+  formulasEstaisticas: undefined;
+};
 
 export default function HomeScreen() {
+  const navigation = useNavigation<DrawerNavigationProp<RootDrawerParamList>>();
+
+  const openDrawer = () => {
+    navigation.openDrawer();
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>CALCULADORA PARA ESTADISTICA DESCRIPTIVA</Text>
-      <Image source={require('@/assets/images/tercera.png')} style={styles.image} />
-      <View style={styles.iconContainer}>
-        <FontAwesome5 name="calculator" size={40} color="blue" />
-        <FontAwesome5 name="chart-bar" size={40} color="green" />
-        <FontAwesome5 name="percentage" size={40} color="orange" />
-        <FontAwesome5 name="square-root-alt" size={40} color="red" />
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.menuButton} onPress={openDrawer}>
+          <MaterialCommunityIcons name="menu" size={40} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.title}>CALCULADORA Estadistica Descriptiva</Text>
       </View>
+      <Image source={require('@/assets/images/estafinal.png')} style={styles.image} />
+     
     </ScrollView>
   );
 }
@@ -22,13 +44,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 20,
+    backgroundColor: '#1a1a1a', // Fondo oscuro para coincidir con la imagen
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 15,
+    marginBottom: 20,
+  },
+  menuButton: {
+    padding: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 10,
     color: 'white',
+    flex: 1,
   },
   image: {
     width: 850,
